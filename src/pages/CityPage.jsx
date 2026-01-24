@@ -5,15 +5,21 @@ const CityPage = () => {
     const data = useLoaderData();
 
     return (
-        <div>
-            <h2>{data.name}</h2>
-            <p className="subtitle">Країна: <strong>{data.country}</strong></p>
-            <p>{data.description}</p>
+        <div className="details-page">
+            <Link to="/" style={{ textDecoration: 'none', color: '#666' }}>Назад</Link>
 
-            <div style={{ marginTop: '30px' }}>
-                <Link to="/" style={{ color: '#4285f4', textDecoration: 'none', fontWeight: 'bold' }}>
-                    Повернутися
-                </Link>
+            <h1 style={{ color: '#1976d2', marginTop: '10px' }}>{data.name}</h1>
+            <h3>{data.countryName}</h3>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
+                <div>
+                    <p><strong>Населення:</strong> {data.population}</p>
+                    <p><strong>Часовий пояс:</strong> {data.timezone?.timeZoneId}</p>
+                    <p><strong>Координати:</strong> {data.lat}, {data.lng}</p>
+                </div>
+                <div>
+                    <p><strong>Тип місцевості:</strong> {data.fcodeName}</p>
+                </div>
             </div>
         </div>
     );
