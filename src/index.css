@@ -1,14 +1,29 @@
 :root {
-    --primary-color: #4285f4;
-    --bg-color: #fff;
+    --primary: #1976d2;
+    --bg: #f5f7fa;
     --card-bg: #fff;
+    --text: #333;
+    --overlay-bg: rgba(255, 255, 255, 0.8);
+    --input-bg: #fff;
+    --input-border: #ddd;
+}
+
+.dark-theme {
+    --primary: #90caf9;
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --text: #e0e0e0;
+    --overlay-bg: rgba(0, 0, 0, 0.85);
+    --input-bg: #2c2c2c;
+    --input-border: #555;
 }
 
 body {
     margin: 0;
     font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: var(--bg-color);
-    color: #333;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -18,7 +33,7 @@ body {
 }
 
 .app-header {
-    background-color: var(--primary-color);
+    background-color: #1976d2;
     color: white;
     padding: 0 20px;
     height: 60px;
@@ -26,7 +41,10 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
 }
+
+.dark-theme .app-header { background-color: #333; }
 
 .app-nav a {
     color: white;
@@ -49,7 +67,7 @@ body {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -59,17 +77,25 @@ body {
     flex: 1;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
     border-radius: 4px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text);
 }
 
 .search-btn {
     padding: 10px 20px;
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+select, input[type="text"] {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--input-border);
 }
 
 .cards-grid {
@@ -88,12 +114,36 @@ body {
     flex-direction: column;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
 .card:hover { transform: translateY(-5px); }
-.card h3 { margin: 0 0 10px 0; color: var(--primary-color); }
-.card-link { margin-top: auto; color: var(--primary-color); text-decoration: none; font-weight: bold;}
+.card-link { margin-top: auto; color: var(--primary); text-decoration: none; font-weight: bold;}
+.card h3 {
+    margin: 0;
+    color: var(--primary);
+    line-height: 1.2;
+    padding-right: 10px;
+}
+
+.fav-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+}
 
 .details-page {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -102,12 +152,23 @@ body {
 .loading-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(255,255,255,0.8);
+    background:xj var(--overlay-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     font-size: 1.5rem;
-    color: var(--primary-color);
+    color: var(--primary);
     font-weight: bold;
+    backdrop-filter: blur(2px);
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 20px;
 }
