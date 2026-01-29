@@ -1,5 +1,5 @@
 ﻿const Username = 'wostan';
-const BaseUrl = 'http://api.geonames.org';
+const BaseUrl = 'https://secure.geonames.org';
 
 export const searchCities = async (query) => {
     const searchQuery = query || 'capital';
